@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page d'Accueil</title>
+</head>
+<body>
+    <h1>Bienvenue sur la page d'accueil</h1>
+</body>
+</html>
+login.html :
+
+html
+Copy code
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page de Connexion</title>
+</head>
+<body>
+    <h1>Connexion</h1>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <li style="color: {% if 'danger' in message %}red{% else %}green{% endif %};">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+    <form method="post" action="{{ url_for('login') }}">
+        {{ form.hidden_tag() }}
+        {{ form.username.label }} {{ form.username(size=20) }}<br>
+        {{ form.password.label }} {{ form.password(size=20) }}<br>
+        {{ form.submit }}
+    </form>
+</body>
+</html>
